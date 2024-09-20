@@ -22,7 +22,7 @@
           <v-col cols="12" sm="4">
             <v-select
               v-model="newTodo.priority"
-              :items="['Least Priority', 'Normal', 'Most Priority']"
+              :items="['Least Priority', 'Normal Priority', 'Most Priority']"
               label="Priority"
               outlined
               dense
@@ -116,7 +116,7 @@
         <v-card-title>Edit Task</v-card-title>
         <v-card-text>
           <v-text-field v-model="editedTodo.text" label="Task"></v-text-field>
-          <v-select v-model="editedTodo.priority" :items="['Least Priority', 'Normal', 'Most Priority']" label="Priority"></v-select>
+          <v-select v-model="editedTodo.priority" :items="['Least', 'Normal', 'Most']" label="Priority"></v-select>
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" @click="saveTodo">Save</v-btn>
@@ -215,9 +215,9 @@ export default {
       todo.completed = !todo.completed;
     },
     getPriorityStyle(priority) {
-      if (priority === 'Least Priority') return { color: '#00FF7F' };
+      if (priority === 'Least') return { color: '#00FF7F' };
       if (priority === 'Normal') return { color: '#FF7F50' };
-      if (priority === 'Most Priority') return { color: '#FFD700' };
+      if (priority === 'Most') return { color: '#FFD700' };
       return {};
     },
   },
