@@ -22,7 +22,7 @@
           <v-col cols="12" sm="4">
             <v-select
               v-model="newTodo.priority"
-              :items="['Least Priority', 'Normal Priority', 'Most Priority']"
+              :items="['Least', 'Normal', 'Most']"
               label="Priority"
               outlined
               dense
