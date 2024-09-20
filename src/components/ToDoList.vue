@@ -22,7 +22,7 @@
           <v-col cols="12" sm="4">
             <v-select
               v-model="newTodo.priority"
-              :items="['Least Priority', 'Average', 'Most Priority']"
+              :items="['Least Priority', 'Normal', 'Most Priority']"
               label="Priority"
               outlined
               dense
@@ -116,7 +116,7 @@
         <v-card-title>Edit Task</v-card-title>
         <v-card-text>
           <v-text-field v-model="editedTodo.text" label="Task"></v-text-field>
-          <v-select v-model="editedTodo.priority" :items="['Least Priority', 'Average', 'Most Priority']" label="Priority"></v-select>
+          <v-select v-model="editedTodo.priority" :items="['Least Priority', 'Normal', 'Most Priority']" label="Priority"></v-select>
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" @click="saveTodo">Save</v-btn>
@@ -144,7 +144,7 @@ export default {
     return {
       newTodo: {
         text: '',
-        priority: 'Average',
+        priority: 'Normal',
       },
       todos: [],
       dialog: false,
@@ -190,7 +190,7 @@ export default {
         priority: this.newTodo.priority,
       });
       this.newTodo.text = '';
-      this.newTodo.priority = 'Average';
+      this.newTodo.priority = 'Normal';
     },
     editTodo(todo) {
       this.editedTodo = { ...todo };
@@ -216,7 +216,7 @@ export default {
     },
     getPriorityStyle(priority) {
       if (priority === 'Least Priority') return { color: '#00FF7F' };
-      if (priority === 'Average') return { color: '#FF7F50' };
+      if (priority === 'Normal') return { color: '#FF7F50' };
       if (priority === 'Most Priority') return { color: '#FFD700' };
       return {};
     },
