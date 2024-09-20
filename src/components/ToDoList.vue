@@ -8,7 +8,7 @@
 
       <v-card-text>
         <v-row>
-          <v-col cols="8">
+          <v-col cols="12" sm="8">
             <v-text-field
               v-model="newTodo.text"
               @keyup.enter="addTodo"
@@ -19,17 +19,17 @@
               class="task-input"
             ></v-text-field>
           </v-col>
-          <v-col cols="4">
+          <v-col cols="12" sm="4">
             <v-select
               v-model="newTodo.priority"
-              :items="['Low', 'Medium', 'High']"
+              :items="['Least Priority', 'Average', 'Most Priority']"
               label="Priority"
               outlined
               dense
               :color="darkMode ? '#FF006E' : '#3A86FF'"
             ></v-select>
           </v-col>
-          <v-col cols="12" class="text-right">
+          <v-col cols="12" class="text-right mt-2">
             <v-btn @click="addTodo" :color="darkMode ? '#FF006E' : '#3A86FF'" elevation="2" class="add-task-btn">Add Task</v-btn>
           </v-col>
         </v-row>
@@ -67,17 +67,15 @@
                   <v-col
                     v-for="todo in filteredTodos"
                     :key="todo.id"
-                    cols="12"
-                    sm="6"
-                    md="4"
-                    class="d-flex justify-center mb-3"
+                    cols="12" sm="6" md="4" lg="3"
+                    class="d-flex justify-center mb-4 mx-2"
                     style="overflow: hidden;"
                   >
                     <v-card
                       :color="darkMode ? '#3B3D58' : '#FFFFFF'"
                       elevation="4"
                       class="task-card pa-2"
-                      style="width: 100%; max-width: 300px;"
+                      style="width: 100%;"
                     >
                       <v-list-item-content>
                         <v-list-item-title
@@ -118,7 +116,7 @@
         <v-card-title>Edit Task</v-card-title>
         <v-card-text>
           <v-text-field v-model="editedTodo.text" label="Task"></v-text-field>
-          <v-select v-model="editedTodo.priority" :items="['Low', 'Medium', 'High']" label="Priority"></v-select>
+          <v-select v-model="editedTodo.priority" :items="['Least Priority', 'Average', 'Most Priority']" label="Priority"></v-select>
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" @click="saveTodo">Save</v-btn>
@@ -146,7 +144,7 @@ export default {
     return {
       newTodo: {
         text: '',
-        priority: 'Medium',
+        priority: 'Average',
       },
       todos: [],
       dialog: false,
@@ -192,7 +190,7 @@ export default {
         priority: this.newTodo.priority,
       });
       this.newTodo.text = '';
-      this.newTodo.priority = 'Medium';
+      this.newTodo.priority = 'Average';
     },
     editTodo(todo) {
       this.editedTodo = { ...todo };
@@ -217,9 +215,9 @@ export default {
       todo.completed = !todo.completed;
     },
     getPriorityStyle(priority) {
-      if (priority === 'Low') return { color: '#00FF7F' };
-      if (priority === 'Medium') return { color: '#FF7F50' };
-      if (priority === 'High') return { color: '#FFD700' };
+      if (priority === 'Least Priority') return { color: '#00FF7F' };
+      if (priority === 'Average') return { color: '#FF7F50' };
+      if (priority === 'Most Priority') return { color: '#FFD700' };
       return {};
     },
   },
@@ -270,17 +268,16 @@ export default {
 
 .task-card {
   border-radius: 8px;
-  transition: transform 0.2s;
-  background: #ffffff;
+  transition: box-shadow 0.3s;
 }
 
 .task-card:hover {
-  transform: translateY(-2px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 .completed {
   text-decoration: line-through;
-  color: gray;
+  color: grey;
 }
 
 .v-btn {
